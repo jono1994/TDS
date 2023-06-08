@@ -25,7 +25,8 @@ public class PlayerController : NetworkBehaviour
     private float _currentVelocity;
     public bool Aiming;
     public float FireRate;
-    public float PrimaryWpnDMG;
+    public NetworkVariable<int> PrimaryWpnDMG = new NetworkVariable<int>();
+    //public int PrimaryWpnDMG;
     public bool STN;
     public bool CanShoot = true;
     public Vector3 mousePos;
@@ -37,6 +38,8 @@ public class PlayerController : NetworkBehaviour
 
         //Debug.Log(WeaponDataController.PrimaryDMG);
     }
+
+        
     private void Update()
     {
         if (!IsOwner) return;
@@ -145,7 +148,6 @@ public class PlayerController : NetworkBehaviour
                     CanShoot = false;
                     Shoot();
                     ShootServerRpc();
-                
             }
         }
     }
@@ -154,6 +156,7 @@ public class PlayerController : NetworkBehaviour
     {
         Instantiate(Projectile, ShootPoint.transform.position, transform.rotation);
         GameEvents.OnGetDamage?.Invoke(PrimaryWpnDMG);
+        GameEvents.OnGetSTN?.Invoke(STN);
     }
 
     [ServerRpc]

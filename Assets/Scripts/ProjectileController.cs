@@ -1,20 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
     private Rigidbody MyRB;
     public float Speed;
-    public float Dmg;
+    public NetworkVariable<int> Dmg = new NetworkVariable<int>();
+    public bool Stn;
+
+    public ParticleSystem STNParticle;
     private void OnEnable()
     {
         GameEvents.OnGetDamage += GetDamage;
+        GameEvents.OnGetSTN += GetSTN;
     }
     private void OnDisable()
     {
         GameEvents.OnGetDamage -= GetDamage;
+        GameEvents.OnGetSTN -= GetSTN;
     }
 
     // Start is called before the first frame update
@@ -37,8 +43,18 @@ public class ProjectileController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void GetDamage(float DMG)
+    private void GetDamage(NetworkVariable<int> DMG)
     {
         Dmg = DMG;
+    }
+
+    private void GetSTN(bool STN)
+    {
+        Stn = STN;
+        Debug.Log(Stn);
+        if (Stn)
+        {
+            STNParticle.Play(true);
+        }
     }
 }

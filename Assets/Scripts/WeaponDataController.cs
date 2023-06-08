@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class WeaponDataController : NetworkBehaviour
 {
-    public static float P1PrimaryDMG;
+    public static NetworkVariable<int> P1PrimaryDMG;
     public static bool P1PrimarySTN;
 
-    public static float P2PrimaryDMG;
+    public static NetworkVariable<int> P2PrimaryDMG;
     public static bool P2PrimarySTN;
 
 

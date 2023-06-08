@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : NetworkBehaviour
 {
-    public float DmgTaken;
+    public NetworkVariable<int> DmgTaken = new NetworkVariable<int>();
     public GameObject DamagedThingy;
     private void OnEnable()
     {
         GameEvents.OnTakeDamage += DealWith;
     }
-    private void DealWith(float DmgPassed, GameObject DamagedThingyPassed)
+    private void DealWith(NetworkVariable<int> DmgPassed, GameObject DamagedThingyPassed)
     {
         DmgTaken = DmgPassed;
         DamagedThingy = DamagedThingyPassed;
