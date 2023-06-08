@@ -13,12 +13,12 @@ public class LoadOutDropDowns : NetworkBehaviour
         {
             if (val == 1)
             {
-                WeaponDataController.P1PrimaryDMG = new NetworkVariable<int>(10);
+                WeaponDataController.P1PrimaryDMG = 10;
                 WeaponDataController.P1PrimarySTN = false;
             }
             if (val == 2)
             {
-                WeaponDataController.P1PrimaryDMG = new NetworkVariable<int>(0);
+                WeaponDataController.P1PrimaryDMG = 0;
                 WeaponDataController.P1PrimarySTN = true;
             }
 
@@ -27,12 +27,12 @@ public class LoadOutDropDowns : NetworkBehaviour
         {
             if (val == 1)
             {
-                WeaponDataController.P2PrimaryDMG = new NetworkVariable<int>(10);
+                WeaponDataController.P2PrimaryDMG = 10;
                 WeaponDataController.P2PrimarySTN = false;
             }
             if (val == 2)
             {
-                WeaponDataController.P2PrimaryDMG = new NetworkVariable<int>(0);
+                WeaponDataController.P2PrimaryDMG = 0;
                 WeaponDataController.P2PrimarySTN = true;
             }
         }

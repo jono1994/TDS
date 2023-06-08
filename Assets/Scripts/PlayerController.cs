@@ -7,13 +7,12 @@ using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
 using System.Threading.Tasks;
-
 public class PlayerController : NetworkBehaviour
 {
+    public string PlayerName;
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
-
     [SerializeField] private float _Basespeed;
     [SerializeField] private float smoothTime = 0.05f;
     [SerializeField] private GameObject Projectile;
@@ -25,8 +24,8 @@ public class PlayerController : NetworkBehaviour
     private float _currentVelocity;
     public bool Aiming;
     public float FireRate;
-    public NetworkVariable<int> PrimaryWpnDMG = new NetworkVariable<int>();
-    //public int PrimaryWpnDMG;
+    //public NetworkVariable<int> PrimaryWpnDMG = new NetworkVariable<int>();
+    public int PrimaryWpnDMG;
     public bool STN;
     public bool CanShoot = true;
     public Vector3 mousePos;
@@ -36,10 +35,24 @@ public class PlayerController : NetworkBehaviour
         _characterController= GetComponent<CharacterController>();
         AimingSpeed = _Basespeed / 2;
 
+        
         //Debug.Log(WeaponDataController.PrimaryDMG);
     }
 
-        
+    private void Start()
+    {
+        if (OwnerClientId == 0)
+        {
+            PlayerName = "Player1";
+            gameObject.name = PlayerName;
+        }
+        if (OwnerClientId == 1)
+        {
+            PlayerName = "Player2";
+            gameObject.name = PlayerName;
+        }
+    }
+
     private void Update()
     {
         if (!IsOwner) return;
@@ -72,9 +85,11 @@ public class PlayerController : NetworkBehaviour
         {
             PrimaryWpnDMG = WeaponDataController.P1PrimaryDMG;
             STN = WeaponDataController.P1PrimarySTN;
+            Debug.Log(PrimaryWpnDMG);
         }
         else
         {
+            Debug.Log(PrimaryWpnDMG);
             PrimaryWpnDMG = WeaponDataController.P2PrimaryDMG;
             STN = WeaponDataController.P2PrimarySTN;
         }
@@ -146,15 +161,16 @@ public class PlayerController : NetworkBehaviour
                 StartCoroutine(RateOfFire());
                 
                     CanShoot = false;
-                    Shoot();
+                    Shoot(this.gameObject,PlayerName);
                     ShootServerRpc();
             }
         }
     }
 
-    void Shoot()
+    void Shoot(GameObject Owner, string OwnerName)
     {
-        Instantiate(Projectile, ShootPoint.transform.position, transform.rotation);
+        GameObject go = Instantiate(Projectile, ShootPoint.transform.position, transform.rotation);
+        go.GetComponent<ProjectileController>().Owner = new NetworkVariable<GameObject>(Owner);
         GameEvents.OnGetDamage?.Invoke(PrimaryWpnDMG);
         GameEvents.OnGetSTN?.Invoke(STN);
     }
@@ -170,7 +186,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            Shoot();
+            Shoot(this.gameObject, PlayerName);
         }
     }
     public IEnumerator RateOfFire()

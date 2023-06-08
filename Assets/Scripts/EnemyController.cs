@@ -6,17 +6,19 @@ using UnityEngine.AI;
 
 public class EnemyController : NetworkBehaviour
 {
-    public NetworkVariable<int> DmgTaken = new NetworkVariable<int>();
+    public int DmgTaken;
     public GameObject DamagedThingy;
+    public string damager;
     private void OnEnable()
     {
         GameEvents.OnTakeDamage += DealWith;
     }
-    private void DealWith(NetworkVariable<int> DmgPassed, GameObject DamagedThingyPassed)
+    private void DealWith(int DmgPassed, GameObject DamagedThingyPassed,string Damager)
     {
-        DmgTaken = DmgPassed;
-        DamagedThingy = DamagedThingyPassed;
-        TakeDamageServerRpc();
+            DmgTaken = DmgPassed;
+            DamagedThingy = DamagedThingyPassed;
+            damager = Damager;
+            TakeDamageServerRpc();
     }
     private void TakeDamage()
     {
@@ -33,7 +35,7 @@ public class EnemyController : NetworkBehaviour
     [ClientRpc]
     private void TakeDamageClientRpc()
     {
-        if(!IsOwner)
+        //if(!IsOwner)
         TakeDamage();
     }
 }

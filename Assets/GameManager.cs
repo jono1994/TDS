@@ -1,13 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
-    public GameObject Player;
-    // Start is called before the first frame update
-    void Start()
+    public static NetworkVariable<int> P1DMG;
+    public static NetworkVariable<int> P2DMG;
+
+    private void OnEnable()
     {
-        Instantiate(Player);
+        GameEvents.OnGetDamage += GetDamage;
     }
+    private void OnDisable()
+    {
+        GameEvents.OnGetDamage -= GetDamage;
+    }
+
+    private void GetDamage(int DmgDealt)
+    {
+        P1DMG = new NetworkVariable<int>(WeaponDataController.P1PrimaryDMG);
+        P2DMG = new NetworkVariable<int>(WeaponDataController.P2PrimaryDMG);
+    }
+
 }

@@ -8,8 +8,9 @@ public class ProjectileController : MonoBehaviour
 {
     private Rigidbody MyRB;
     public float Speed;
-    public NetworkVariable<int> Dmg = new NetworkVariable<int>();
+    public int Dmg;
     public bool Stn;
+    public NetworkVariable<GameObject> Owner;
 
     public ParticleSystem STNParticle;
     private void OnEnable()
@@ -28,7 +29,6 @@ public class ProjectileController : MonoBehaviour
     {
         MyRB= GetComponent<Rigidbody>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,13 +39,25 @@ public class ProjectileController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            GameEvents.OnTakeDamage?.Invoke(Dmg, collision.gameObject);
+            GetDamage(Dmg);
+            GameEvents.OnTakeDamage?.Invoke(Dmg, collision.gameObject,Owner.Value.name);
             Destroy(gameObject);
         }
     }
-    private void GetDamage(NetworkVariable<int> DMG)
+    private void GetDamage(int DMG)
     {
-        Dmg = DMG;
+        if (Owner.Value.name == "Player1")
+        {
+            DMG = GameManager.P1DMG.Value;
+            Dmg=DMG;
+            Debug.Log(Dmg);
+        }
+        if(Owner.Value.name == "Player2")
+        {
+            DMG = GameManager.P2DMG.Value;
+            Dmg = DMG;
+            Debug.Log(Dmg);
+        }
     }
 
     private void GetSTN(bool STN)
