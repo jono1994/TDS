@@ -24,8 +24,8 @@ public class PlayerController : NetworkBehaviour
     private float _currentVelocity;
     public bool Aiming;
     public float FireRate;
-    //public NetworkVariable<int> PrimaryWpnDMG = new NetworkVariable<int>();
-    public int PrimaryWpnDMG;
+    public NetworkVariable<int> PrimaryWpnDMG = new NetworkVariable<int>();
+    //public int PrimaryWpnDMG;
     public bool STN;
     public bool CanShoot = true;
     public Vector3 mousePos;
@@ -83,14 +83,14 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("Finished");
         if (OwnerClientId == 0)
         {
-            PrimaryWpnDMG = WeaponDataController.P1PrimaryDMG;
+            PrimaryWpnDMG = GameManager.P1DMG;
             STN = WeaponDataController.P1PrimarySTN;
             Debug.Log(PrimaryWpnDMG);
         }
         else
         {
             Debug.Log(PrimaryWpnDMG);
-            PrimaryWpnDMG = WeaponDataController.P2PrimaryDMG;
+            PrimaryWpnDMG = GameManager.P2DMG;
             STN = WeaponDataController.P2PrimarySTN;
         }
     }
@@ -171,7 +171,7 @@ public class PlayerController : NetworkBehaviour
     {
         GameObject go = Instantiate(Projectile, ShootPoint.transform.position, transform.rotation);
         go.GetComponent<ProjectileController>().Owner = new NetworkVariable<GameObject>(Owner);
-        GameEvents.OnGetDamage?.Invoke(PrimaryWpnDMG);
+        GameEvents.OnGetDamage?.Invoke(PrimaryWpnDMG.Value);
         GameEvents.OnGetSTN?.Invoke(STN);
     }
 

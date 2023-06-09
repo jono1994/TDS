@@ -50,13 +50,13 @@ public class ProjectileController : MonoBehaviour
         {
             DMG = GameManager.P1DMG.Value;
             Dmg=DMG;
-            Debug.Log(Dmg);
+            Debug.Log(DMG);
         }
         if(Owner.Value.name == "Player2")
         {
             DMG = GameManager.P2DMG.Value;
             Dmg = DMG;
-            Debug.Log(Dmg);
+            Debug.Log(DMG);
         }
     }
 
