@@ -302,7 +302,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LeftArm
     m_StateMachine: {fileID: 5620111578747805921}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 0da4e87a2018bb142b3706839cfad1bd, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1
@@ -314,7 +314,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: RightArm
     m_StateMachine: {fileID: -8756952335146532677}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: f39b9b5324e0b9344afd008f51fddc26, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1

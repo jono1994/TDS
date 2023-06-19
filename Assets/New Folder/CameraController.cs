@@ -16,8 +16,12 @@ public class CameraController : NetworkBehaviour
     private float currentHorizontalAngle = 0f; // Current horizontal angle of the camera
     private float currentVerticalAngle = 0f; // Current vertical angle of the camera
 
-    private void LateUpdate()
+    private void Update()
     {
+        if (!IsOwner)
+        {
+            this.gameObject.SetActive(false);
+        }
         if (IsOwner)
         {
             // Get the mouse input for rotation
