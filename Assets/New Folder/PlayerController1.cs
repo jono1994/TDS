@@ -13,12 +13,51 @@ public class PlayerController1 : NetworkBehaviour
     public Rigidbody rb;
     public float rotationSpeed = 100f;
 
-    [SerializeField] public Vector3 moveDir;
+    public bool It;
+
+    public BoxCollider LeftHand, RightHand;
+
     // Start is called before the first frame update
     void Start()
     {
         //rb = GetComponent<RigidbodySynchronizable>();
         controller = GetComponent<CharacterController>();
+
+        It = false;
+        //LeftHand.enabled = false;
+        //RightHand.enabled = false;
+    }
+    private void EnableHands()
+    {
+        if (It)
+        {
+          //  LeftHand.enabled = true;
+          //  RightHand.enabled = true;
+        }
+    }
+
+    public void SetIT(ulong PlayerID)
+    {
+        It = false;
+        SetItServerRpc(PlayerID);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetItServerRpc(ulong PlayerID)
+    { 
+         SetItClientRpc(PlayerID);
+    }
+
+    [ClientRpc]
+    private void SetItClientRpc(ulong PlayerID)
+    {
+        Debug.Log("Client Id = " + PlayerID);
+        Debug.Log("Owner Id = " + OwnerClientId);
+        if (PlayerID == OwnerClientId)
+        {
+            Debug.Log(PlayerID + "= true");
+            It = true;
+        }
     }
 
     // Update is called once per frame
@@ -54,6 +93,11 @@ public class PlayerController1 : NetworkBehaviour
             else
             {
                 Anim.SetBool("RightArm", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameEvents.OnChooseIT?.Invoke();
             }
         }
 

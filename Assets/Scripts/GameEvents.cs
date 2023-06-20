@@ -14,9 +14,9 @@ public class GameEvents : MonoBehaviour
     public delegate void OnTakeDamageDelegate (int DmgTaken, GameObject DamagedThingy, string Damager);
     public static OnTakeDamageDelegate OnTakeDamage;
 
-    public delegate void OnSelectLoadoutDelegate();
-    public static OnSelectLoadoutDelegate OnSelectLoadout;
+    public delegate void OnEnableHandsDelegate();
+    public static OnEnableHandsDelegate OnEnableHands;
 
-    public delegate void OnStartGameDelegate();
-    public static OnStartGameDelegate OnStartGame;
+    public delegate void OnChooseITeDelegate();
+    public static OnChooseITeDelegate OnChooseIT;
 }

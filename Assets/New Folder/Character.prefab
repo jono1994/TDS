@@ -751,7 +751,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.030477434, w: 0.99953544}
   m_LocalPosition: {x: -8.445173e-11, y: 0.008002255, z: 2.5845856e-10}
   m_LocalScale: {x: 0.9999995, y: 0.9999997, z: 0.99999994}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6370670691480998622}
   m_Father: {fileID: 5592235432291681809}
@@ -2261,7 +2261,7 @@ GameObject:
   - component: {fileID: 1029529034}
   m_Layer: 8
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2301,7 +2301,9 @@ MonoBehaviour:
   Anim: {fileID: 5142153247264616172}
   rb: {fileID: 5142153246054660235}
   rotationSpeed: 100
-  moveDir: {x: 0, y: 0, z: 0}
+  It: 0
+  LeftHand: {fileID: 0}
+  RightHand: {fileID: 0}
 --- !u!114 &1029529034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3209,8 +3211,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6683814746297124358}
-  m_LocalRotation: {x: -0.7071067, y: 0.7071068, z: 0.000000015454312, w: 0.00000001545431}
-  m_LocalPosition: {x: -0.0074196863, y: 0.00062993256, z: 0}
+  m_LocalRotation: {x: -0.000000003877666, y: 0.91648597, z: -0.40006694, w: 0.0000000018752067}
+  m_LocalPosition: {x: -0.004999998, y: -0.0002911541, z: -0.005318067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

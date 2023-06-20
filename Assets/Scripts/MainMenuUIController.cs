@@ -35,14 +35,14 @@ public class MainMenuUIController : NetworkBehaviour
 
     private void StartServerRpc()
     {
-        GameEvents.OnStartGame?.Invoke();
+        //GameEvents.OnStartGame?.Invoke();
         StartClientRpc();
     }
 
     [ClientRpc]
     private void StartClientRpc()
     {
-        GameEvents.OnStartGame?.Invoke();
+       // GameEvents.OnStartGame?.Invoke();
     }
     public void LoadOutMenu()
     {
@@ -52,7 +52,7 @@ public class MainMenuUIController : NetworkBehaviour
 
     public void Back()
     {
-        GameEvents.OnSelectLoadout?.Invoke();
+        //GameEvents.OnSelectLoadout?.Invoke();
         MainMenu.SetActive(true);
         LoadOutScreen.SetActive(false);
     }

@@ -8,4 +8,54 @@ AvatarMask:
   m_PrefabAsset: {fileID: 0}
   m_Name: FullBody
   m_Mask: 01000000010000000100000001000000010000000000000000000000000000000000000001000000010000000000000000000000
-  m_Elements: []
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Hips
+    m_Weight: 1
+  - m_Path: Armature/Hips/Stomach
+    m_Weight: 1
+  - m_Path: Armature/Hips/Stomach/Chest
+    m_Weight: 1
+  - m_Path: Armature/Hips/Stomach/Chest/LeftUpperArm
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/LeftUpperArm/LeftLowerArm
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/LeftUpperArm/LeftLowerArm/LeftHand
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/LeftUpperArm/LeftLowerArm/LeftThumb
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/Neck
+    m_Weight: 1
+  - m_Path: Armature/Hips/Stomach/Chest/Neck/Head
+    m_Weight: 1
+  - m_Path: Armature/Hips/Stomach/Chest/RightUpperArm
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/RightUpperArm/RightLowerArm
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/RightUpperArm/RightLowerArm/RightHand
+    m_Weight: 0
+  - m_Path: Armature/Hips/Stomach/Chest/RightUpperArm/RightLowerArm/RightThumb
+    m_Weight: 0
+  - m_Path: Armature/LeftArmPole
+    m_Weight: 1
+  - m_Path: Armature/LeftHandIK
+    m_Weight: 1
+  - m_Path: Armature/RightArmIK
+    m_Weight: 1
+  - m_Path: Armature/UpperLeftLeg
+    m_Weight: 1
+  - m_Path: Armature/UpperLeftLeg/LowerLeftLeg
+    m_Weight: 1
+  - m_Path: Armature/UpperLeftLeg/LowerLeftLeg/LeftFoot
+    m_Weight: 1
+  - m_Path: Armature/UpperRightLeg
+    m_Weight: 1
+  - m_Path: Armature/UpperRightLeg/LowerRightLeg
+    m_Weight: 1
+  - m_Path: Armature/UpperRightLeg/LowerRightLeg/RightFoot
+    m_Weight: 1
+  - m_Path: Untitled
+    m_Weight: 1

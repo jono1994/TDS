@@ -71,11 +71,11 @@ public class PlayerController : NetworkBehaviour
     }
     private void OnEnable()
     {
-        GameEvents.OnStartGame += StartDelay;
+       // GameEvents.OnStartGame += StartDelay;
     }
     private void OnDisable()
     {
-        GameEvents.OnStartGame -= StartDelay;
+       // GameEvents.OnStartGame -= StartDelay;
     }
     private async void StartDelay()
     {
@@ -83,14 +83,14 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("Finished");
         if (OwnerClientId == 0)
         {
-            PrimaryWpnDMG = GameManager.P1DMG;
+           // PrimaryWpnDMG = GameManager.P1DMG;
             STN = WeaponDataController.P1PrimarySTN;
             Debug.Log(PrimaryWpnDMG);
         }
         else
         {
             Debug.Log(PrimaryWpnDMG);
-            PrimaryWpnDMG = GameManager.P2DMG;
+           // PrimaryWpnDMG = GameManager.P2DMG;
             STN = WeaponDataController.P2PrimarySTN;
         }
     }

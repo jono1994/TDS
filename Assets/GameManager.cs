@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -6,31 +6,35 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
-    public static NetworkVariable<int> P1DMG;
-    public static NetworkVariable<int> P2DMG;
-
-    public int p1DMG;  
-    public int p2DMG;
-
+    public List<PlayerController1> Players = new List<PlayerController1>();
+    private ulong PlayerID;
+    private PlayerController1 ItPlayer;
+    public int PlayerNum;
     private void OnEnable()
     {
-        GameEvents.OnGetDamage += GetDamage;
+        GameEvents.OnChooseIT += ChooseIT;
     }
     private void OnDisable()
     {
-        GameEvents.OnGetDamage -= GetDamage;
+        GameEvents.OnChooseIT += ChooseIT;
     }
 
-    private void Update()
+    private void ChooseIT()
     {
-        GetDamage(p1DMG);
-        p1DMG= P1DMG.Value;
-        p2DMG= P2DMG.Value;
-    }
-    private void GetDamage(int DmgDealt)
-    {
-        P1DMG = new NetworkVariable<int>(WeaponDataController.P1PrimaryDMG);
-        P2DMG = new NetworkVariable<int>(WeaponDataController.P2PrimaryDMG);
-    }
+        if (IsServer)
+        {
+            Players.Clear();
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                Players.Add(player.GetComponent<PlayerController1>());
+                player.GetComponent<PlayerController1>().It = false;
+            }
 
+            PlayerNum = Random.Range(0, Players.Count);
+            PlayerID = Players[PlayerNum].GetComponent<NetworkObject>().OwnerClientId;
+            ItPlayer = Players[PlayerNum];
+
+            ItPlayer.SetIT(PlayerID);
+        }
+    }
 }
