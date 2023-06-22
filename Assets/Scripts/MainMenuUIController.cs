@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,8 @@ public class MainMenuUIController : NetworkBehaviour
     public LoadOutDropDowns LoudOut;
 
     public GameObject Camera;
+    public string JoinCode;
+    public TMP_InputField JoinCodeInput;
    public void StartGame(string input)
     {
         Destroy(Camera);
@@ -29,6 +32,21 @@ public class MainMenuUIController : NetworkBehaviour
         Debug.Log("Joining...");
         MainPanel.SetActive(false);
         NetworkManager.Singleton.StartClient();
+    }
+
+    public void StarRelay()
+    {
+        GameEvents.OnStartRelay?.Invoke();
+
+        MainPanel.SetActive(false);
+    }
+
+    public void JoinRelay()
+    {
+        JoinCode = JoinCodeInput.text;
+        GameEvents.OnjoinRelay?.Invoke(JoinCode);
+
+        MainPanel.SetActive(false);
     }
 
     [ServerRpc]

@@ -24,6 +24,7 @@ public class PlayerController1 : NetworkBehaviour
         controller = GetComponent<CharacterController>();
 
         It = false;
+        Cursor.lockState = CursorLockMode.Locked;
         //LeftHand.enabled = false;
         //RightHand.enabled = false;
     }

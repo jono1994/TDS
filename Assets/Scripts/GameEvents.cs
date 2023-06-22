@@ -19,4 +19,10 @@ public class GameEvents : MonoBehaviour
 
     public delegate void OnChooseITeDelegate();
     public static OnChooseITeDelegate OnChooseIT;
+
+    public delegate void OnStartRelayDelegate();
+    public static OnStartRelayDelegate OnStartRelay;
+
+    public delegate void OnJoinRelayDelegate(string JoinCode);
+    public static OnJoinRelayDelegate OnjoinRelay;
 }
