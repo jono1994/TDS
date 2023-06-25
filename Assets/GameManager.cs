@@ -13,11 +13,15 @@ public class GameManager : NetworkBehaviour
     private void OnEnable()
     {
         GameEvents.OnChooseIT += ChooseIT;
+        GameEvents.OnTag += Tag;
     }
     private void OnDisable()
     {
         GameEvents.OnChooseIT += ChooseIT;
+        GameEvents.OnTag -= Tag;
     }
+
+    
 
     private void ChooseIT()
     {
@@ -35,6 +39,22 @@ public class GameManager : NetworkBehaviour
             ItPlayer = Players[PlayerNum];
 
             ItPlayer.SetIT(PlayerID);
+            GameEvents.OnEnableHands?.Invoke();
         }
+    }
+    private void Tag(PlayerController1 TaggedPlayer)
+    {
+        Players.Clear();
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Players.Add(player.GetComponent<PlayerController1>());
+            player.GetComponent<PlayerController1>().It = false;
+        }
+
+        ItPlayer = TaggedPlayer;
+        Debug.Log(TaggedPlayer);
+
+        ItPlayer.SetIT(PlayerID);
+        GameEvents.OnEnableHands?.Invoke();
     }
 }

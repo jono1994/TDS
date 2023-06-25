@@ -15,7 +15,7 @@ public class PlayerController1 : NetworkBehaviour
 
     public bool It;
 
-    public BoxCollider LeftHand, RightHand;
+    public TagHandler LeftHand, RightHand;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +28,26 @@ public class PlayerController1 : NetworkBehaviour
         //LeftHand.enabled = false;
         //RightHand.enabled = false;
     }
+
+    private void OnEnable()
+    {
+        GameEvents.OnEnableHands += EnableHands;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnEnableHands -= EnableHands;
+    }
     private void EnableHands()
     {
         if (It)
         {
-          //  LeftHand.enabled = true;
-          //  RightHand.enabled = true;
+            LeftHand.enabled = true;
+            RightHand.enabled = true;
+        }
+        if (!It)
+        {
+            LeftHand.enabled = false;
+            RightHand.enabled = false;
         }
     }
 

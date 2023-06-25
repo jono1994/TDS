@@ -25,4 +25,7 @@ public class GameEvents : MonoBehaviour
 
     public delegate void OnJoinRelayDelegate(string JoinCode);
     public static OnJoinRelayDelegate OnjoinRelay;
+
+    public delegate void OnTagDelegate(PlayerController1 TaggedPlayer);
+    public static OnTagDelegate OnTag;
 }

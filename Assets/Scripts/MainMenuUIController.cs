@@ -47,6 +47,7 @@ public class MainMenuUIController : NetworkBehaviour
         GameEvents.OnjoinRelay?.Invoke(JoinCode);
 
         MainPanel.SetActive(false);
+        JoinCodeInput.enabled= false;
     }
 
     [ServerRpc]
