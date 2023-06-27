@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class PlayerController1 : NetworkBehaviour
 {
@@ -16,6 +17,11 @@ public class PlayerController1 : NetworkBehaviour
     public bool It;
 
     public TagHandler LeftHand, RightHand;
+    public GameObject undies;
+    public Material Red, Blue;
+
+    public TextMeshProUGUI YourItText;
+    public TextMeshProUGUI MyItUi;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +31,11 @@ public class PlayerController1 : NetworkBehaviour
 
         It = false;
         Cursor.lockState = CursorLockMode.Locked;
-        //LeftHand.enabled = false;
-        //RightHand.enabled = false;
+        //YourItText = GameObject.Find("YourIt").GetComponent<TextMeshProUGUI>();
+        MyItUi = Instantiate(YourItText, GameObject.Find("Canvas").transform);
+        LeftHand.enabled = false;
+        RightHand.enabled = false;
+        EnableHands();
     }
 
     private void OnEnable()
@@ -53,7 +62,11 @@ public class PlayerController1 : NetworkBehaviour
 
     public void SetIT(ulong PlayerID)
     {
+        if (!IsOwner) return;
         It = false;
+        //undies.GetComponent<Renderer>().material = Blue;
+        //Debug.Log(undies.GetComponent<Renderer>().material);
+        //MyItUi.text = (" ");
         SetItServerRpc(PlayerID);
     }
 
@@ -72,6 +85,15 @@ public class PlayerController1 : NetworkBehaviour
         {
             Debug.Log(PlayerID + "= true");
             It = true;
+            undies.GetComponent<Renderer>().material = Red;
+            MyItUi.text = ("You're IT!!");
+        }
+        else
+        {
+            It = false;
+            Debug.Log(It);
+            undies.GetComponent<Renderer>().material = Blue;
+            MyItUi.text = (" ");
         }
     }
 
@@ -80,6 +102,7 @@ public class PlayerController1 : NetworkBehaviour
     {
         if (IsOwner)
         {
+
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Anim.SetBool("Moving", true);

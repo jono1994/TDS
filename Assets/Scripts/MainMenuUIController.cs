@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,7 +17,9 @@ public class MainMenuUIController : NetworkBehaviour
     public GameObject Camera;
     public string JoinCode;
     public TMP_InputField JoinCodeInput;
-   public void StartGame(string input)
+    public GameObject YourItText;
+
+    public void StartGame(string input)
     {
         Destroy(Camera);
         Debug.Log("Starting...");

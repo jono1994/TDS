@@ -4,14 +4,41 @@ using UnityEngine;
 
 public class TagHandler : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+
+        if (collision.gameObject.CompareTag("Body"))
         {
-            if(!collision.gameObject.GetComponent<PlayerController1>().It)
+            GameObject CollidedOwnerObject = collision.gameObject.GetComponent<GetOwner>().MostParent;
+            if (CollidedOwnerObject.GetComponent<PlayerController1>().It != true)
             {
-                GameEvents.OnTag?.Invoke(collision.gameObject.GetComponent<PlayerController1>());
+                GameEvents.OnTag?.Invoke(CollidedOwnerObject.GetComponent<PlayerController1>());
+                GameEvents.OnTag?.Invoke(GetComponentInParent<PlayerController1>());
             }
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    //if (collision.gameObject.CompareTag("Player"))
+    //    //{
+    //    //    if(!collision.gameObject.GetComponent<PlayerController1>().It)
+    //    //    {
+    //    //        Debug.Log("Tag");
+    //    //        GameEvents.OnTag?.Invoke(collision.gameObject.GetComponent<PlayerController1>());
+    //    //    }
+    //    //}
+
+
+    //    //if (collision.gameObject.GetComponent<PlayerController1>().It != true)
+    //    //{
+    //    //    Debug.Log("Tag");
+    //    //    GameEvents.OnTag?.Invoke(collision.gameObject.GetComponent<PlayerController1>());
+    //    //}
+
+    //}
 }
