@@ -44,7 +44,7 @@ public class GameManager : NetworkBehaviour
                 PlayerID = Players[PlayerNum].GetComponent<NetworkObject>().OwnerClientId;
                 ItPlayer = Players[PlayerNum];
 
-                ItPlayer.SetIT(PlayerID);
+                ItPlayer.SetIT(true);
 
                 //ItPlayer.undies.GetComponent<Renderer>().material = ItPlayer.Red;
                 GameEvents.OnEnableHands?.Invoke();
@@ -56,23 +56,33 @@ public class GameManager : NetworkBehaviour
     {
         if (GameStarted)
         {
-            Debug.Log($"Tag {TaggedPlayer.GetComponent<NetworkObject>().OwnerClientId}");
-            Players.Clear();
-            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            Debug.Log("Tag");
+            if (ItPlayer != null)
             {
-                Players.Add(player.GetComponent<PlayerController1>());
-                player.GetComponent<PlayerController1>().It = false;
-                //player.GetComponent<PlayerController1>().undies.GetComponent<Renderer>().material = player.GetComponent<PlayerController1>().Blue;
+                ItPlayer.SetIT(false);
+
+                ItPlayer = TaggedPlayer;
+                ItPlayer.SetIT(true);
+
+                GameEvents.OnEnableHands?.Invoke();
             }
+            //Debug.Log($"Tag {TaggedPlayer.GetComponent<NetworkObject>().OwnerClientId}");
+            //Players.Clear();
+            //foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            //{
+            //    Players.Add(player.GetComponent<PlayerController1>());
+            //    player.GetComponent<PlayerController1>().It = false;
+            //    //player.GetComponent<PlayerController1>().undies.GetComponent<Renderer>().material = player.GetComponent<PlayerController1>().Blue;
+            //}
 
-            ItPlayer = TaggedPlayer;
-            Debug.Log(TaggedPlayer);
+            //ItPlayer = TaggedPlayer;
+            //Debug.Log(TaggedPlayer);
 
-            //TaggedPlayer.undies.GetComponent<Renderer>().material = TaggedPlayer.Red;
-            PlayerID = TaggedPlayer.GetComponent<NetworkObject>().OwnerClientId;
+            ////TaggedPlayer.undies.GetComponent<Renderer>().material = TaggedPlayer.Red;
+            //PlayerID = TaggedPlayer.GetComponent<NetworkObject>().OwnerClientId;
 
-            ItPlayer.SetIT(PlayerID);
-            GameEvents.OnEnableHands?.Invoke();
+            //ItPlayer.SetIT(PlayerID);
+            //GameEvents.OnEnableHands?.Invoke();
         }
     }
 }

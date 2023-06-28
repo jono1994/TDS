@@ -60,41 +60,54 @@ public class PlayerController1 : NetworkBehaviour
         }
     }
 
-    public void SetIT(ulong PlayerID)
+    public void SetIT(bool isIt)
     {
         if (!IsOwner) return;
-        It = false;
+        //It = false;
         //undies.GetComponent<Renderer>().material = Blue;
         //Debug.Log(undies.GetComponent<Renderer>().material);
         //MyItUi.text = (" ");
-        SetItServerRpc(PlayerID);
+        SetItServerRpc(isIt);
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetItServerRpc(ulong PlayerID)
+    private void SetItServerRpc(bool isIt)
     { 
-         SetItClientRpc(PlayerID);
+         SetItClientRpc(isIt);
     }
 
     [ClientRpc]
-    private void SetItClientRpc(ulong PlayerID)
+    private void SetItClientRpc(bool isIt)
     {
-        Debug.Log("Client Id = " + PlayerID);
-        Debug.Log("Owner Id = " + OwnerClientId);
-        if (PlayerID == OwnerClientId)
+        It= isIt;
+        if(It)
         {
-            Debug.Log(PlayerID + "= true");
-            It = true;
             undies.GetComponent<Renderer>().material = Red;
-            MyItUi.text = ("You're IT!!");
+            Debug.Log(undies.GetComponent<Renderer>().material);
+            MyItUi.text = "You're It";
         }
         else
         {
-            It = false;
-            Debug.Log(It);
             undies.GetComponent<Renderer>().material = Blue;
-            MyItUi.text = (" ");
+            Debug.Log(undies.GetComponent<Renderer>().material);
+            MyItUi.text = " ";
         }
+        //Debug.Log("Client Id = " + PlayerID);
+        //Debug.Log("Owner Id = " + OwnerClientId);
+        //if (PlayerID == OwnerClientId)
+        //{
+        //    Debug.Log(PlayerID + "= true");
+        //    It = true;
+        //    undies.GetComponent<Renderer>().material = Red;
+        //    MyItUi.text = ("You're IT!!");
+        //}
+        //else
+        //{
+        //    It = false;
+        //    Debug.Log(It);
+        //    undies.GetComponent<Renderer>().material = Blue;
+        //    MyItUi.text = (" ");
+        //}
     }
 
     // Update is called once per frame

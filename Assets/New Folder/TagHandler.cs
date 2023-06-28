@@ -17,7 +17,7 @@ public class TagHandler : MonoBehaviour
             if (CollidedOwnerObject.GetComponent<PlayerController1>().It != true)
             {
                 GameEvents.OnTag?.Invoke(CollidedOwnerObject.GetComponent<PlayerController1>());
-                GameEvents.OnTag?.Invoke(GetComponentInParent<PlayerController1>());
+                //GameEvents.OnTag?.Invoke(GetComponentInParent<PlayerController1>());
             }
         }
     }
