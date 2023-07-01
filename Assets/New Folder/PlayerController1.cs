@@ -11,6 +11,7 @@ public class PlayerController1 : NetworkBehaviour
     [SerializeField] private float TurnSpeed = 90f;
     [SerializeField] private Animator Anim;
     [SerializeField] private List<Transform> SpawnPoints;
+    [SerializeField] private Transform SpawnedPoint;
 
     public Rigidbody rb;
     public float rotationSpeed = 100f;
@@ -178,9 +179,9 @@ public class PlayerController1 : NetworkBehaviour
             SpawnPoints.Add(spawnPointObject.transform);
         }
 
-        Transform randomSpawn = SpawnPoints[Random.Range(0, SpawnPoints.Count)];
-        transform.position = randomSpawn.position;
-        transform.rotation = randomSpawn.rotation;
+        SpawnedPoint = SpawnPoints[Random.Range(0, SpawnPoints.Count)];
+        transform.position = SpawnedPoint.position;
+        transform.rotation = SpawnedPoint.rotation;
     }
 }
 
