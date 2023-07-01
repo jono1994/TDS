@@ -18,6 +18,7 @@ public class MainMenuUIController : NetworkBehaviour
     public string JoinCode;
     public TMP_InputField JoinCodeInput;
     public GameObject YourItText;
+    public TextMeshProUGUI HostTip;
 
     public void StartGame(string input)
     {
@@ -40,8 +41,8 @@ public class MainMenuUIController : NetworkBehaviour
     public void StarRelay()
     {
         GameEvents.OnStartRelay?.Invoke();
-
         MainPanel.SetActive(false);
+        HostTip.text = "Press TAB to choose It Player";
     }
 
     public void JoinRelay()

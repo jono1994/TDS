@@ -62,7 +62,7 @@ public class PlayerController1 : NetworkBehaviour
 
     public void SetIT(bool isIt)
     {
-        if (!IsOwner) return;
+        //if (!IsOwner) return;
         //It = false;
         //undies.GetComponent<Renderer>().material = Blue;
         //Debug.Log(undies.GetComponent<Renderer>().material);
@@ -84,13 +84,13 @@ public class PlayerController1 : NetworkBehaviour
         {
             undies.GetComponent<Renderer>().material = Red;
             Debug.Log(undies.GetComponent<Renderer>().material);
-            MyItUi.text = "You're It";
+            
         }
         else
         {
             undies.GetComponent<Renderer>().material = Blue;
             Debug.Log(undies.GetComponent<Renderer>().material);
-            MyItUi.text = " ";
+            
         }
         //Debug.Log("Client Id = " + PlayerID);
         //Debug.Log("Owner Id = " + OwnerClientId);
@@ -115,7 +115,14 @@ public class PlayerController1 : NetworkBehaviour
     {
         if (IsOwner)
         {
-
+            if (It)
+            {
+                MyItUi.text = "You're It";
+            }
+            if (!It)
+            {
+                MyItUi.text = " ";
+            }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Anim.SetBool("Moving", true);
@@ -146,7 +153,7 @@ public class PlayerController1 : NetworkBehaviour
                 Anim.SetBool("RightArm", false);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 GameEvents.OnChooseIT?.Invoke();
             }

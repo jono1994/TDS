@@ -74,10 +74,11 @@ GameObject:
   - component: {fileID: 55177368113651580}
   - component: {fileID: 55177368113651582}
   - component: {fileID: 55177368113651581}
+  - component: {fileID: 1700351594682103527}
   - component: {fileID: 55177368113651583}
   m_Layer: 7
   m_Name: RightLowerArm
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,6 +169,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1700351594682103527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194966652281573564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f744348d65ae4881e386eefff39c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MostParent: {fileID: 5142153245904272561}
 --- !u!65 &55177368113651583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -257,10 +271,11 @@ GameObject:
   - component: {fileID: 6727451400449517913}
   - component: {fileID: 539635262279333578}
   - component: {fileID: 539635262279333579}
+  - component: {fileID: 6384788694285198918}
   - component: {fileID: 6423623261371764616}
   m_Layer: 7
   m_Name: Neck
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,6 +348,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6384788694285198918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539635262279333576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f744348d65ae4881e386eefff39c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MostParent: {fileID: 5142153245904272561}
 --- !u!65 &6423623261371764616
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -541,7 +569,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0.002, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 100
+    spring: 500
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -619,10 +647,11 @@ GameObject:
   - component: {fileID: 3891179676924615394}
   - component: {fileID: 3891179676924615399}
   - component: {fileID: 3891179676924615396}
+  - component: {fileID: 930083184859313569}
   - component: {fileID: 3891179676924615397}
   m_Layer: 7
   m_Name: RightUpperArmZ
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -713,6 +742,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &930083184859313569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721895833901314058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f744348d65ae4881e386eefff39c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MostParent: {fileID: 5142153245904272561}
 --- !u!65 &3891179676924615397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1104,10 +1146,11 @@ GameObject:
   - component: {fileID: 2455990594536563711}
   - component: {fileID: 2455990594536563200}
   - component: {fileID: 2455990594536563201}
+  - component: {fileID: 5001683180584645009}
   - component: {fileID: 2455990594536563710}
   m_Layer: 7
   m_Name: LeftUpperArm
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1198,6 +1241,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5001683180584645009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455990594536563708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f744348d65ae4881e386eefff39c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MostParent: {fileID: 5142153245904272561}
 --- !u!65 &2455990594536563710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2364,7 +2420,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 100
+    spring: 500
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -3860,10 +3916,11 @@ GameObject:
   - component: {fileID: 390563334580056072}
   - component: {fileID: 390563334580056075}
   - component: {fileID: 390563334580056073}
+  - component: {fileID: 8851762377467174488}
   - component: {fileID: 390563334580056070}
   m_Layer: 7
   m_Name: LeftLowerArm
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3954,6 +4011,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8851762377467174488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125364864132913283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f744348d65ae4881e386eefff39c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MostParent: {fileID: 5142153245904272561}
 --- !u!65 &390563334580056070
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class GameManager : NetworkBehaviour
     private PlayerController1 ItPlayer;
     public int PlayerNum;
     public bool GameStarted;
+    public TextMeshProUGUI HostTip;
     private void OnEnable()
     {
         GameEvents.OnChooseIT += ChooseIT;
@@ -30,6 +32,8 @@ public class GameManager : NetworkBehaviour
         {
             if (!GameStarted)
             {
+
+                HostTip.text = " ";
                 GameStarted = true;
                 Debug.Log("Choose It");
                 Players.Clear();
