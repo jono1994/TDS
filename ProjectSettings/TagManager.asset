@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Body
   - Hand
+  - spawnpoint
   layers:
   - Default
   - TransparentFX

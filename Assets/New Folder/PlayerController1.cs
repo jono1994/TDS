@@ -10,6 +10,7 @@ public class PlayerController1 : NetworkBehaviour
     [SerializeField] private float Speed = 6f;
     [SerializeField] private float TurnSpeed = 90f;
     [SerializeField] private Animator Anim;
+    [SerializeField] private List<Transform> SpawnPoints;
 
     public Rigidbody rb;
     public float rotationSpeed = 100f;
@@ -45,6 +46,11 @@ public class PlayerController1 : NetworkBehaviour
     private void OnDisable()
     {
         GameEvents.OnEnableHands -= EnableHands;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        UpdatePositionServerRpc();
     }
     private void EnableHands()
     {
@@ -160,6 +166,21 @@ public class PlayerController1 : NetworkBehaviour
         }
 
         
+    }
+
+    [ServerRpc]
+    private void UpdatePositionServerRpc()
+    {
+        GameObject[] spawnPointObjects = GameObject.FindGameObjectsWithTag("spawnpoint");
+
+        foreach (GameObject spawnPointObject in spawnPointObjects)
+        {
+            SpawnPoints.Add(spawnPointObject.transform);
+        }
+
+        Transform randomSpawn = SpawnPoints[Random.Range(0, SpawnPoints.Count)];
+        transform.position = randomSpawn.position;
+        transform.rotation = randomSpawn.rotation;
     }
 }
 
