@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
+using System.ComponentModel;
 
 public class PlayerController1 : NetworkBehaviour
 {
@@ -37,7 +38,7 @@ public class PlayerController1 : NetworkBehaviour
         MyItUi = Instantiate(YourItText, GameObject.Find("Canvas").transform);
         LeftHand.enabled = false;
         RightHand.enabled = false;
-        EnableHands();
+        EnableHands(false);
     }
 
     private void OnEnable()
@@ -51,22 +52,40 @@ public class PlayerController1 : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        UpdatePositionServerRpc();
+       if (IsOwner) UpdatePositionServerRpc();
     }
-    private void EnableHands()
+    public void EnableHands(bool IsIt)
     {
-        if (It)
-        {
-            LeftHand.enabled = true;
-            RightHand.enabled = true;
-        }
-        if (!It)
-        {
-            LeftHand.enabled = false;
-            RightHand.enabled = false;
-        }
+        EnableHandsServerRPC(IsIt);
     }
-
+    [ServerRpc(RequireOwnership = false)]
+    private void EnableHandsServerRPC(bool IsIt)
+    {
+        EnableHandsClientRPC(IsIt);
+    }
+    [ClientRpc]
+    private void EnableHandsClientRPC(bool IsIt)
+    {
+        if (IsOwner)
+        {
+            It = IsIt;
+            if (It)
+            {
+                LeftHand.enabled = true;
+                RightHand.enabled = true;
+                MyItUi.text = "You're It";
+                Anim.speed = 1.5f;
+            }
+            if (!It)
+            {
+                LeftHand.enabled = false;
+                RightHand.enabled = false;
+                MyItUi.text = " ";
+                Anim.speed = 1f;
+            }
+        }
+        
+    }
     public void SetIT(bool isIt)
     {
         //if (!IsOwner) return;
@@ -124,11 +143,11 @@ public class PlayerController1 : NetworkBehaviour
         {
             if (It)
             {
-                MyItUi.text = "You're It";
+                
             }
             if (!It)
             {
-                MyItUi.text = " ";
+                
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -160,6 +179,15 @@ public class PlayerController1 : NetworkBehaviour
                 Anim.SetBool("RightArm", false);
             }
 
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                Anim.SetBool("Crouching", true);
+            }
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                Anim.SetBool("Crouching", false);
+            }
+
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 GameEvents.OnChooseIT?.Invoke();
@@ -171,6 +199,11 @@ public class PlayerController1 : NetworkBehaviour
 
     [ServerRpc]
     private void UpdatePositionServerRpc()
+    {
+        UpdatePositionClientRpc();
+    }
+    [ClientRpc]
+    private void UpdatePositionClientRpc()
     {
         GameObject[] spawnPointObjects = GameObject.FindGameObjectsWithTag("spawnpoint");
 

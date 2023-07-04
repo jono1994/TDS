@@ -8,6 +8,7 @@ TagManager:
   - Body
   - Hand
   - spawnpoint
+  - Environment
   layers:
   - Default
   - TransparentFX

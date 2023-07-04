@@ -18,12 +18,18 @@ public class TagController : MonoBehaviour
         GameEvents.OnEnableHands -= EnableHands;
     }
 
-    private void EnableHands()
+    private void EnableHands(bool IsIt)
     {
+        It = IsIt;
         if (It)
         {
             LeftHand.enabled = true;
             RightHand.enabled = true;
+        }
+        if (!It)
+        {
+            LeftHand.enabled = false;
+            RightHand.enabled = false;
         }
     }
 

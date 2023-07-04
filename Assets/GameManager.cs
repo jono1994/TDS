@@ -49,9 +49,9 @@ public class GameManager : NetworkBehaviour
                 ItPlayer = Players[PlayerNum];
 
                 ItPlayer.SetIT(true);
-
+                ItPlayer.EnableHands(true);
                 //ItPlayer.undies.GetComponent<Renderer>().material = ItPlayer.Red;
-                GameEvents.OnEnableHands?.Invoke();
+                //GameEvents.OnEnableHands?.Invoke();
             }
         }
            
@@ -64,11 +64,13 @@ public class GameManager : NetworkBehaviour
             if (ItPlayer != null)
             {
                 ItPlayer.SetIT(false);
+                ItPlayer.EnableHands(false);
 
                 ItPlayer = TaggedPlayer;
                 ItPlayer.SetIT(true);
 
-                GameEvents.OnEnableHands?.Invoke();
+                ItPlayer.EnableHands(true);
+                //GameEvents.OnEnableHands?.Invoke();
             }
             //Debug.Log($"Tag {TaggedPlayer.GetComponent<NetworkObject>().OwnerClientId}");
             //Players.Clear();

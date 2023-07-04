@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class TagHandler : MonoBehaviour
 {
+    public PlayerController1 Player;
     private void Start()
     {
         
     }
     private void OnTriggerEnter(Collider collision)
     {
-
-        if (collision.gameObject.CompareTag("Body"))
+        if (Player.It)
         {
-            GameObject CollidedOwnerObject = collision.gameObject.GetComponent<GetOwner>().MostParent;
-            if (CollidedOwnerObject.GetComponent<PlayerController1>().It != true)
+            if (collision.gameObject.CompareTag("Body"))
             {
-                GameEvents.OnTag?.Invoke(CollidedOwnerObject.GetComponent<PlayerController1>());
-                //GameEvents.OnTag?.Invoke(GetComponentInParent<PlayerController1>());
+                GameObject CollidedOwnerObject = collision.gameObject.GetComponent<GetOwner>().MostParent;
+                if (CollidedOwnerObject.GetComponent<PlayerController1>().It != true)
+                {
+                    GameEvents.OnTag?.Invoke(CollidedOwnerObject.GetComponent<PlayerController1>());
+                    //GameEvents.OnTag?.Invoke(GetComponentInParent<PlayerController1>());
+                }
             }
         }
+        
     }
 
     //private void OnCollisionEnter(Collision collision)
