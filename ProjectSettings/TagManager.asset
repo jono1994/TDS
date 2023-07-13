@@ -9,6 +9,7 @@ TagManager:
   - Hand
   - spawnpoint
   - Environment
+  - Grabbable
   layers:
   - Default
   - TransparentFX

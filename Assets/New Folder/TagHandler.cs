@@ -9,7 +9,7 @@ public class TagHandler : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (Player.It)
         {
