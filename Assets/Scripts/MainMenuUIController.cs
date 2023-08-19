@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class MainMenuUIController : NetworkBehaviour
 {
     public GameObject MainPanel;
+    public GameObject PausePanel;
     public GameObject MainMenu;
     public GameObject LoadOutScreen;
     public LoadOutDropDowns LoudOut;
@@ -79,4 +80,6 @@ public class MainMenuUIController : NetworkBehaviour
         MainMenu.SetActive(true);
         LoadOutScreen.SetActive(false);
     }
+
+    
 }

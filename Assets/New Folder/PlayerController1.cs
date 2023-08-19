@@ -25,6 +25,8 @@ public class PlayerController1 : NetworkBehaviour
 
     public TextMeshProUGUI YourItText;
     public TextMeshProUGUI MyItUi;
+    public GameObject PauseMenu;
+    public GameObject MainPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -141,13 +143,11 @@ public class PlayerController1 : NetworkBehaviour
     {
         if (IsOwner)
         {
-            if (It)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                
-            }
-            if (!It)
-            {
-                
+                MainPanel.SetActive(true);
+                PauseMenu.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
